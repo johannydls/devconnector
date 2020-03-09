@@ -1,0 +1,29 @@
+{
+  "name": "devconnector",
+  "description": "Social network for developers",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "start": "node ./src/server",
+    "dev": "nodemon ./src/server"
+  },
+  "repository": "https://github.com/johannydls/devconnector.git",
+  "author": "Johanny de Lucena Santos <johanny.dls@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.19.2",
+    "bcryptjs": "^2.4.3",
+    "config": "^3.3.0",
+    "express": "^4.17.1",
+    "express-validator": "^6.4.0",
+    "gravatar": "^1.8.0",
+    "jsonwebtoken": "^8.5.1",
+    "moment-timezone": "^0.5.28",
+    "mongoose": "^5.9.4",
+    "request": "^2.88.2"
+  },
+  "devDependencies": {
+    "concurrently": "^5.1.0",
+    "nodemon": "^2.0.2"
+  }
+}
