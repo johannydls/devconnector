@@ -1,6 +1,8 @@
 const { Router } = require('express');
 const routes = new Router();
 
+const validators = require('../config/validators');
+
 const user = require('./app/controllers/UserController');
 const post = require('./app/controllers/PostController');
 const auth = require('./app/controllers/AuthController');
@@ -8,14 +10,7 @@ const profile = require('./app/controllers/ProfileController');
 
 routes.get('/', (req, res) => res.send({ ok: true, api: 'v1' }));
 
-// ============= Public routes ================= //
-
-/**
- * @route  GET api/users/test
- * @desc   Test route
- * @access Public
- */
-routes.get('/users/test', user.test);
+routes.post('/users', validators.registerUser, user.register);
 
 /**
  * @route  GET api/posts/test
