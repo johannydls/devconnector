@@ -6,4 +6,8 @@ module.exports = {
     check('email', 'Include a valid email').isEmail(),
     check('password', 'Please, enter a password with 6 or more characters').isLength({ min: 6 })
   ],
+  loginUser: [
+    check('email', 'Include a valid email').isEmail(),
+    check('password', 'Password is required').exists()
+  ]
 };

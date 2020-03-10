@@ -2,6 +2,7 @@ const { Router } = require('express');
 const routes = new Router();
 
 const validators = require('../config/validators');
+const authMiddleware = require('./app/middlewares/auth');
 
 const user = require('./app/controllers/UserController');
 const post = require('./app/controllers/PostController');
@@ -12,27 +13,11 @@ routes.get('/', (req, res) => res.send({ ok: true, api: 'v1' }));
 
 routes.post('/users', validators.registerUser, user.register);
 
-/**
- * @route  GET api/posts/test
- * @desc   Test route
- * @access Public
- */
 routes.get('/posts/test', post.test);
 
-/**
- * @route  GET api/auth/test
- * @desc   Test route
- * @access Public
- */
-routes.get('/auth/test', auth.test);
+routes.get('/auth', authMiddleware, auth.getUser);
+routes.post('/auth', validators.loginUser, auth.login);
 
-/**
- * @route  GET api/profile/test
- * @desc   Test route
- * @access Public
- */
 routes.get('/profile/test', profile.test);
-
-// ============= Protected routes =============== //
 
 module.exports = routes;
