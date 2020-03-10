@@ -10,23 +10,6 @@ const MONGO_OPTIONS = {
   useFindAndModify: false
 };
 
-/*const DB = async () => {
-  try {
-    await mongoose.connect(MONGO_URI, MONGO_OPTIONS)
-
-    const logDate = moment(new Date(Date.now())).tz('America/Sao_Paulo').format('DD-MM-YYYY HH:mm:ss');
-    console.log(`[${logDate}] Database successfully connected.`);
-
-  } catch (err) {
-    const logDate = moment(new Date(Date.now())).tz('America/Sao_Paulo').format('DD-MM-YYYY HH:mm:ss');
-    console.log(`[${logDate}] Database connection error.`);
-    console.error(`[${logDate}] MongoError: ${err.message}`);
-
-    //Exit process with failure
-    process.exit(1);
-  }
-}*/
-
 mongoose.connect(MONGO_URI, MONGO_OPTIONS).then(() => {
   const logDate = moment(new Date(Date.now())).tz('America/Sao_Paulo').format('DD-MM-YYYY HH:mm:ss');
   console.log(`[${logDate}] Database successfully connected.`);
