@@ -1,7 +1,8 @@
 const mongoose = require('mongoose');
 const moment = require('moment-timezone');
+const config = require('config');
+const MONGO_URI = config.get('MONGO_URI');
 
-const DEV_MONGO_URI = 'mongodb+srv://johanny-test:johanny123@clustermern-ykurb.mongodb.net/test?retryWrites=true&w=majority';
 const MONGO_OPTIONS = {
   useNewUrlParser: true,
   useCreateIndex: true,
@@ -9,14 +10,33 @@ const MONGO_OPTIONS = {
   useFindAndModify: false
 };
 
-mongoose.connect(process.env.MONGO_URI || DEV_MONGO_URI, MONGO_OPTIONS).then(() => {
+/*const DB = async () => {
+  try {
+    await mongoose.connect(MONGO_URI, MONGO_OPTIONS)
+
+    const logDate = moment(new Date(Date.now())).tz('America/Sao_Paulo').format('DD-MM-YYYY HH:mm:ss');
+    console.log(`[${logDate}] Database successfully connected.`);
+
+  } catch (err) {
+    const logDate = moment(new Date(Date.now())).tz('America/Sao_Paulo').format('DD-MM-YYYY HH:mm:ss');
+    console.log(`[${logDate}] Database connection error.`);
+    console.error(`[${logDate}] MongoError: ${err.message}`);
+
+    //Exit process with failure
+    process.exit(1);
+  }
+}*/
+
+mongoose.connect(MONGO_URI, MONGO_OPTIONS).then(() => {
   const logDate = moment(new Date(Date.now())).tz('America/Sao_Paulo').format('DD-MM-YYYY HH:mm:ss');
   console.log(`[${logDate}] Database successfully connected.`);
 })
 .catch(err => {
   const logDate = moment(new Date(Date.now())).tz('America/Sao_Paulo').format('DD-MM-YYYY HH:mm:ss');
   console.log(`[${logDate}] Database connection error.`);
-  console.log(err);
+    console.error(`[${logDate}] MongoError: ${err.message}`);
 });
+
+mongoose.Promise = global.Promise;
 
 module.exports = mongoose;
