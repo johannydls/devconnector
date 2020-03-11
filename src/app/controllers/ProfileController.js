@@ -73,10 +73,16 @@ class ProfileController {
   /**
    * @route  GET api/profile
    * @desc   Get all profiles
-   * @access Private
+   * @access Public
    */
-  all(req, res) {
-    return res.send({ API: 'Profile', endpoint: '/api/profile/test' });
+  async getAll(req, res) {
+    try {
+      const profiles = await Profile.find().populate('user', ['name', 'avatar']);
+      return res.json(profiles);
+    } catch (error) {
+      console.error(error.message);
+      return res.status(500).send('Server Error');
+    }
   }
 
   /**
@@ -95,6 +101,31 @@ class ProfileController {
 
       return res.send(profile);
     } catch (error) {
+      console.error(error.message);
+      return res.status(500).send('Server Error');
+    }
+  }
+
+  /**
+   * @route  GET api/profile/u/:user_id
+   * @desc   Get current user's profile (test)
+   * @access Private
+   */
+  async getProfile(req, res) {
+    try {
+      const profile = await Profile.findOne({ user: req.params.user_id })
+            .populate('user', ['name', 'avatar']);
+
+      if (!profile) {
+        return res.status(400).json({ msg: 'Profile not found' });
+      }
+
+      console.log(req.params);
+      return res.send(profile);
+    } catch (error) {
+      if (error.kind && error.kind === 'ObjectId') {
+        return res.status(400).json({ msg: 'Profile not found' });
+      }
       console.error(error.message);
       return res.status(500).send('Server Error');
     }
