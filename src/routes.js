@@ -18,6 +18,7 @@ routes.get('/posts/test', post.test);
 routes.get('/auth', authMiddleware, auth.getUser);
 routes.post('/auth', validators.loginUser, auth.login);
 
-routes.get('/profile/test', profile.test);
+routes.get('/profile', profile.all);
+routes.get('/profile/me', authMiddleware, profile.userProfile);
 
 module.exports = routes;
