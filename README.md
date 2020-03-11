@@ -1,2 +1,5 @@
 # devconnector
-Projeto de curso de MERN Stack
+
+Rede social de desenvolvedores
+
+Projeto do curso utilizando a MERN Stack
