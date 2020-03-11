@@ -130,6 +130,28 @@ class ProfileController {
       return res.status(500).send('Server Error');
     }
   }
+
+  /**
+   * @route  DELETE api/profile
+   * @desc   Delete profile, user and posts
+   * @access Private
+   */
+  async deleteLoggedProfile(req, res) {
+    try {
+      // @todo - Remove user's posts
+
+      //Remove profile
+      await Profile.findOneAndRemove({ user: req.user.id });
+
+      //Remove user
+      await User.findOneAndRemove({ _id: req.user.id });
+
+      return res.json({ msg: 'User deleted' });
+    } catch (error) {
+      console.error(error.message);
+      return res.status(500).send('Server Error');
+    }
+  }
 }
 
 module.exports = new ProfileController();

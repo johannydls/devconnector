@@ -22,5 +22,6 @@ routes.post('/profile', [authMiddleware, validators.profile_create], profile.cre
 routes.get('/profile', profile.getAll);
 routes.get('/profile/me', authMiddleware, profile.userProfile);
 routes.get('/profile/u/:user_id', profile.getProfile);
+routes.delete('/profile', authMiddleware, profile.deleteLoggedProfile);
 
 module.exports = routes;
