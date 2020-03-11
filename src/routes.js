@@ -11,13 +11,14 @@ const profile = require('./app/controllers/ProfileController');
 
 routes.get('/', (req, res) => res.send({ ok: true, api: 'v1' }));
 
-routes.post('/users', validators.registerUser, user.register);
+routes.post('/users', validators.user_create, user.create);
 
 routes.get('/posts/test', post.test);
 
 routes.get('/auth', authMiddleware, auth.getUser);
-routes.post('/auth', validators.loginUser, auth.login);
+routes.post('/auth', validators.auth_login, auth.login);
 
+routes.post('/profile', [authMiddleware, validators.profile_create], profile.create);
 routes.get('/profile', profile.all);
 routes.get('/profile/me', authMiddleware, profile.userProfile);
 

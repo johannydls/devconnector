@@ -9,10 +9,10 @@ const User = require('../models/User');
 class UserController {
   /**
    * @route  POST api/users
-   * @desc   Register user
+   * @desc   Create a new user
    * @access Public
    */
-  async register(req, res) {
+  async create(req, res) {
     const errors = validationResult(req);
 
     if (!errors.isEmpty()) {
