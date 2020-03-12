@@ -33,4 +33,6 @@ routes.delete('/profile/experience/:exp_id', authMiddleware, profile.deleteProfi
 routes.put('/profile/education', [authMiddleware, validators.profile_education], profile.addProfileEducation);
 routes.delete('/profile/education/:education_id', authMiddleware, profile.deleteProfileEducation);
 
+routes.get('/profile/github/:username', profile.getGithubRepos);
+
 module.exports = routes;
