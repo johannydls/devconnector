@@ -120,7 +120,6 @@ class ProfileController {
         return res.status(400).json({ msg: 'Profile not found' });
       }
 
-      console.log(req.params);
       return res.send(profile);
     } catch (error) {
       if (error.kind && error.kind === 'ObjectId') {
@@ -200,7 +199,61 @@ class ProfileController {
       await profile.save();
 
       return res.json(profile);
-      
+
+    } catch (error) {
+      console.error(error.message);
+      return res.status(500).json({ msg: 'Server Error', errMsg: error.message });
+    }
+  }
+
+  /**
+   * @route  PUT api/profile/education
+   * @desc   Add profile education
+   * @access Private
+   */
+  async addProfileEducation(req, res) {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
+    const { school, degree, study_field, from, to, current, description } = req.body;
+
+    const newEducation = {
+      school, degree, study_field, from, to, current, description
+    };
+
+    try {
+      const profile = await Profile.findOne({ user: req.user.id });
+      profile.education.unshift(newEducation);
+      await profile.save();
+
+      return res.json(profile);
+
+    } catch (error) {
+      console.error(error.message);
+      return res.status(500).send('Server Error');
+    }
+  }
+
+  /**
+   * @route  DELETE api/profile/education/:education_id
+   * @desc   Delete education from profile
+   * @access Private
+   */
+  async deleteProfileEducation(req, res) {
+    try {
+      const profile = await Profile.findOne({ user: req.user.id });
+
+      // Get remove index
+      const removeIndex = profile.education.map(item => item.id).indexOf(req.params.education_id);
+
+      profile.education.splice(removeIndex, 1);
+
+      await profile.save();
+
+      return res.json(profile);
+
     } catch (error) {
       console.error(error.message);
       return res.status(500).json({ msg: 'Server Error', errMsg: error.message });

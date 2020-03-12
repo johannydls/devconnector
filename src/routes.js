@@ -15,6 +15,7 @@ routes.post('/users', validators.user_create, user.create);
 
 routes.get('/posts/test', post.test);
 
+// Auth
 routes.get('/auth', authMiddleware, auth.getUser);
 routes.post('/auth', validators.auth_login, auth.login);
 
@@ -23,6 +24,13 @@ routes.get('/profile', profile.getAll);
 routes.get('/profile/me', authMiddleware, profile.userProfile);
 routes.get('/profile/u/:user_id', profile.getProfile);
 routes.delete('/profile', authMiddleware, profile.deleteLoggedProfile);
+
+// Profile experience
 routes.put('/profile/experience', [authMiddleware, validators.profile_experience], profile.addProfileExperience)
 routes.delete('/profile/experience/:exp_id', authMiddleware, profile.deleteProfileExperience);
+
+// Profile education
+routes.put('/profile/education', [authMiddleware, validators.profile_education], profile.addProfileEducation);
+routes.delete('/profile/education/:education_id', authMiddleware, profile.deleteProfileEducation);
+
 module.exports = routes;

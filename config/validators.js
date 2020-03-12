@@ -18,5 +18,11 @@ module.exports = {
     check('title', 'Title is required').not().isEmpty(),
     check('company', 'Company is required').not().isEmpty(),
     check('from', 'From date is required').not().isEmpty()
+  ],
+  profile_education: [
+    check('school', 'Scool is required').not().isEmpty(),
+    check('degree', 'Degree is required').not().isEmpty(),
+    check('study_field', 'Study field is required').not().isEmpty(),
+    check('from', 'From date is required').not().isEmpty()
   ]
 };
