@@ -23,5 +23,6 @@ routes.get('/profile', profile.getAll);
 routes.get('/profile/me', authMiddleware, profile.userProfile);
 routes.get('/profile/u/:user_id', profile.getProfile);
 routes.delete('/profile', authMiddleware, profile.deleteLoggedProfile);
-
+routes.put('/profile/experience', [authMiddleware, validators.profile_experience], profile.addProfileExperience)
+routes.delete('/profile/experience/:exp_id', authMiddleware, profile.deleteProfileExperience);
 module.exports = routes;
