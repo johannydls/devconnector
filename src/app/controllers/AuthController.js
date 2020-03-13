@@ -11,7 +11,7 @@ class AuthController {
    * @desc   Get user (test)
    * @access Private
    */
-  async getUser(req, res) {
+  async getLoggedInUser(req, res) {
     try {
       const user = await User.findById(req.user.id).select('-password');
       return res.json(user);
