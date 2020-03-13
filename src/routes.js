@@ -32,6 +32,9 @@ routes.delete('/profile/education/:education_id', authMiddleware, profile.delete
 routes.get('/profile/github/:username', profile.getGithubRepos);
 
 // --------------------------------- Post's routes --------------------------------- //
-routes.get('/posts/test', post.test);
+routes.post('/posts', [ authMiddleware, validators.post_create ], post.create);
+routes.get('/posts', authMiddleware, post.getAll);
+routes.get('/posts/:id', authMiddleware, post.getPost);
+routes.delete('/posts/:id', authMiddleware, post.deletePost);
 
 module.exports = routes;

@@ -24,5 +24,8 @@ module.exports = {
     check('degree', 'Degree is required').not().isEmpty(),
     check('study_field', 'Study field is required').not().isEmpty(),
     check('from', 'From date is required').not().isEmpty()
+  ],
+  post_create: [
+    check('text', 'Text is required').not().isEmpty(),
   ]
 };
