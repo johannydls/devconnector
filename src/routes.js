@@ -32,11 +32,13 @@ routes.delete('/profile/education/:education_id', authMiddleware, profile.delete
 routes.get('/profile/github/:username', profile.getGithubRepos);
 
 // --------------------------------- Post's routes --------------------------------- //
-routes.post('/posts', [ authMiddleware, validators.post_create ], post.create);
+routes.post('/posts', [ authMiddleware, validators.post_comment_create ], post.create);
 routes.get('/posts', authMiddleware, post.getAll);
 routes.get('/posts/:id', authMiddleware, post.getPost);
 routes.delete('/posts/:id', authMiddleware, post.deletePost);
 routes.put('/posts/like/:id', authMiddleware, post.like);
 routes.put('/posts/unlike/:id', authMiddleware, post.unlike);
+routes.post('/posts/comment/:id', [ authMiddleware, validators.post_comment_create ], post.createComment);
+routes.delete('/posts/comment/:id/:comment_id', authMiddleware, post.deleteComment);
 
 module.exports = routes;
