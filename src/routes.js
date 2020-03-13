@@ -36,5 +36,7 @@ routes.post('/posts', [ authMiddleware, validators.post_create ], post.create);
 routes.get('/posts', authMiddleware, post.getAll);
 routes.get('/posts/:id', authMiddleware, post.getPost);
 routes.delete('/posts/:id', authMiddleware, post.deletePost);
+routes.put('/posts/like/:id', authMiddleware, post.like);
+routes.put('/posts/unlike/:id', authMiddleware, post.unlike);
 
 module.exports = routes;
