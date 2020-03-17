@@ -74,6 +74,14 @@ class PostController {
   }
 
   /**
+   * @route  PUT api/posts/:id
+   * @desc   Update a post
+   * @access Private
+   */
+  async updatePost(req, res) {
+  }
+
+  /**
    * @route  DELETE api/posts/:id
    * @desc   Delete a post
    * @access Private

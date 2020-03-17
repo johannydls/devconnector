@@ -63,6 +63,14 @@ class UserController {
       return res.status(500).send('Server error');
     }
   }
+
+  /**
+   * @route  PUT api/users
+   * @desc   Update a user
+   * @access Private
+   */
+  async updateUser(req, res) {
+  }
 }
 
 module.exports = new UserController();
