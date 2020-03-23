@@ -12,8 +12,8 @@ export const Landing = () => {
             other developers
           </p>
           <div className="buttons">
-            <a href="register.html" className="btn btn-primary">Sign Up</a>
-            <a href="login.html" className="btn btn-light">Login</a>
+            <a href="#" className="btn btn-primary">Sign Up</a>
+            <a href="#" className="btn btn-light">Login</a>
           </div>
         </div>
       </div>
