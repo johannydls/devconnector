@@ -1,5 +1,5 @@
 import React from 'react';
-//import './Landing';
+import './Landing.css';
 
 export const Landing = () => {
   return (
