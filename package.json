@@ -8,7 +8,7 @@
     "server": "nodemon ./src/server",
     "client": "yarn --cwd client start",
     "client-npm": "npm start --prefix client",
-    "dev": "concurrently \"yarn run server\" \"yarn run client\""
+    "dev": "concurrently \"yarn run start\" \"yarn run client\""
   },
   "repository": "https://github.com/johannydls/devconnector.git",
   "author": "Johanny de Lucena Santos <johanny.dls@gmail.com>",
